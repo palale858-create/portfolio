@@ -1,0 +1,143 @@
+/* --- CORE & RESET --- */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --gray: #888888;
+  --glass: rgba(255, 255, 255, 0.75);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- GRID LAYOUT PER SEZIONI --- */
+.section {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  scroll-snap-align: start;
+  position: relative;
+  padding: 0 4vw;
+  box-sizing: border-box;
+}
+
+/* --- HERO STYLE --- */
+.hero-text-wrapper {
+  grid-column: 1 / 13;
+  grid-row: 4 / 10;
+  align-self: center;
+}
+
+.giant-title { 
+  font-size: clamp(3.5rem, 8vw, 10rem); 
+  line-height: 0.9; 
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.giant-title span.bold {
+  display: block;
+  font-weight: 800;
+  margin-left: 10vw; /* Rientro editoriale */
+}
+
+/* --- PROJECT LAYOUTS (Piena Pagina) --- */
+.project-media {
+  grid-column: 1 / 13;
+  grid-row: 2 / 12; /* Lascia aria sopra e sotto */
+  position: relative;
+  overflow: hidden;
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section:hover .project-media img {
+  transform: scale(1.05);
+}
+
+/* Info sovrapposte col mix-blend-mode */
+.project-info {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 10;
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.project-title {
+  font-size: clamp(2rem, 5vw, 6rem);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.project-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+/* --- HEADER & DOCK --- */
+header {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  mix-blend-mode: difference; color: white; padding: 40px 4vw;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.brand { font-weight: 700; font-size: 1.1rem; cursor: pointer; text-decoration: none; color: inherit; }
+.top-link { color: white !important; text-decoration: none; margin-left: 30px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; }
+
+.floating-dock {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  background: var(--glass); backdrop-filter: blur(20px) saturate(180%);
+  padding: 8px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.4);
+  display: flex; align-items: center; gap: 5px; z-index: 2000;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: 0.5s;
+}
+.dock-link { text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: 0.3s; }
+.dock-link:hover { background: rgba(0,0,0,0.05); }
+
+/* --- OVERLAY & CLOSE BTN --- */
+#close-btn { 
+  position: fixed; top: 40px; right: 40px; z-index: 9999;
+  background: #000; width: 45px; height: 45px; border-radius: 50%;
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: 0.3s;
+}
+#close-btn svg { stroke: #fff; width: 20px; }
+#close-btn:hover { transform: scale(1.1) rotate(90deg); }
+
+.custom-overlay {
+  position: fixed; inset: 0; background: #fff; z-index: 9000;
+  transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; align-items: center; justify-content: center;
+}
+.custom-overlay.active { transform: translateY(0); }
+
+/* FORM */
+.minimal-form { width: 100%; max-width: 700px; padding: 20px; }
+.form-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 10px; display: block; }
+.form-input { 
+  width: 100%; background: none; border: none; border-bottom: 1px solid #eee; 
+  padding: 10px 0; font-size: 1.3rem; margin-bottom: 40px; outline: none; transition: 0.3s;
+}
+.form-input:focus { border-bottom-color: #000; }
+.submit-btn { background: none; border: none; font-size: 1.4rem; font-weight: 700; cursor: pointer; border-bottom: 2px solid #000; }
+
+main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 0; }

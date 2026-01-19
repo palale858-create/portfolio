@@ -1,0 +1,154 @@
+// 1. Variabili (Design System)
+$bg-white: #ffffff;
+$text-dark: #000000;
+$gray-muted: #888888;
+$glass-effect: rgba(255, 255, 255, 0.75);
+$transition-smooth: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+// 2. Mixin (Riutilizzo di stili)
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin full-page {
+  height: 100vh;
+  width: 100%;
+}
+
+// 3. Stili Base
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $bg-white;
+  color: $text-dark;
+  margin: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+// 4. Nesting (Annidamento) - Molto più leggibile
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  color: white;
+  padding: 40px 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: inherit;
+    &:hover { opacity: 0.7; } // Uso di & per lo stato hover
+  }
+
+  .top-link {
+    color: white !important;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+}
+
+.section {
+  @include full-page; // Uso del mixin
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  scroll-snap-align: start;
+  padding: 0 4vw;
+
+  &:hover {
+    .project-media img {
+      transform: scale(1.05);
+    }
+  }
+
+  .hero-text-wrapper {
+    grid-column: 1 / 13;
+    grid-row: 4 / 10;
+    align-self: center;
+
+    .giant-title {
+      font-size: clamp(3.5rem, 8vw, 10rem);
+      line-height: 0.9;
+      font-weight: 300;
+      text-transform: uppercase;
+
+      span.bold {
+        display: block;
+        font-weight: 800;
+        margin-left: 10vw;
+      }
+    }
+  }
+}
+
+// 5. Dock Glassmorphism
+.floating-dock {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $glass-effect;
+  backdrop-filter: blur(20px) saturate(180%);
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  gap: 5px;
+  z-index: 2000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+  .dock-link {
+    text-decoration: none;
+    color: $text-dark;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+// 6. Overlay & Form
+.custom-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-white;
+  z-index: 9000;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  @include flex-center;
+
+  &.active { transform: translateY(0); }
+
+  .minimal-form {
+    width: 100%;
+    max-width: 700px;
+
+    .form-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      outline: none;
+      &:focus { border-bottom-color: $text-dark; }
+    }
+  }
+}
