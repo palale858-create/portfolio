@@ -57,6 +57,5 @@ La seguente struttura è stata ottimizzata per una navigazione intuitiva da part
 ## 🔗 Distribuzione Online
 
 Il progetto è attualmente ospitato su piattaforma GitHub Pages, garantendo un *deployment* rapido e una accessibilità immediata.
-
 **Accesso al Portfolio Live:**
 [https://palale858-create.github.io/portfolio/](https://palale858-create.github.io/portfolio/)
