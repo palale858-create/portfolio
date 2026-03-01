@@ -3,36 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <title>Pasquale Lucarelli — Portfolio</title>
-   
-<!-- HTML Meta Tags -->
-<title>Pasquale Lucarelli — Portfolio</title>
-<meta name="description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
+    <meta name="description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
 
-<!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://palale858-create.github.io/portfolio/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pasquale Lucarelli — Portfolio">
-<meta property="og:description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
-<meta property="og:image" content="https://img.sanishtech.com/u/308ac59ba5bf387dfccd057ca8fb5ce2.png">
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://palale858-create.github.io/portfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pasquale Lucarelli — Portfolio">
+    <meta property="og:description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
+    <meta property="og:image" content="https://img.sanishtech.com/u/308ac59ba5bf387dfccd057ca8fb5ce2.png">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:domain" content="palale858-create.github.io">
-<meta property="twitter:url" content="https://palale858-create.github.io/portfolio/">
-<meta name="twitter:title" content="Pasquale Lucarelli — Portfolio">
-<meta name="twitter:description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
-<meta name="twitter:image" content="https://img.sanishtech.com/u/308ac59ba5bf387dfccd057ca8fb5ce2.png">
-
-
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="palale858-create.github.io">
+    <meta property="twitter:url" content="https://palale858-create.github.io/portfolio/">
+    <meta name="twitter:title" content="Pasquale Lucarelli — Portfolio">
+    <meta name="twitter:description" content="UX/UI Designer. Focalizzato sulla purezza estetica e sulla funzionalità editoriale.">
+    <meta name="twitter:image" content="https://img.sanishtech.com/u/308ac59ba5bf387dfccd057ca8fb5ce2.png">
 
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/Style.css">
   </head>
-  
+
   <body>
 
     <header>
@@ -57,15 +52,15 @@
     </nav>
 
     <main>
-      
+
       <section class="section">
         <div class="hero-text-wrapper">
           <h1 class="giant-title">
             Creare esperienze <br>
             digitali <span class="bold">significative.</span>
           </h1>
-          <p style="margin-top:40px; font-size:1.1rem; color:#888; max-width:1900px; line-height:1.5;">
-            UX/UI Designer a 360°, a partire dal logo fino ad' arrivare al sito web, presento le vostre idee in qualcosa di funzionale ma sopratutto intuitivo e facile da usare per l'utente finale.
+          <p style="margin-top:40px; font-size:1.1rem; color:#888; max-width:900px; line-height:1.6;">
+            UX/UI Designer a 360°, a partire dal logo fino ad arrivare al sito web, presento le vostre idee in qualcosa di funzionale ma soprattutto intuitivo e facile da usare per l'utente finale.
           </p>
         </div>
       </section>
@@ -92,25 +87,26 @@
 
     </main>
 
+    <!-- OVERLAY CONTATTI -->
     <div id="contact-overlay" class="custom-overlay">
-        <div class="minimal-form">
-            <h2 style="font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; margin-bottom: 60px; letter-spacing: -0.04em;">Parliamone.</h2>
-            <form onsubmit="handleForm(event)">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="form-label">IL TUO NOME</label>
-                        <input type="text" class="form-input" placeholder="Nome Cognome" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">EMAIL</label>
-                        <input type="email" class="form-input" placeholder="email@esempio.it" required>
-                    </div>
-                </div>
-                <label class="form-label">MESSAGGIO</label>
-                <textarea class="form-input" rows="1" placeholder="Raccontami il tuo progetto..."></textarea>
-                <button type="submit" class="submit-btn">INVIA MESSAGGIO →</button>
-            </form>
-        </div>
+      <div class="minimal-form">
+        <h2 style="font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; margin-bottom: 60px; letter-spacing: -0.04em;">Parliamone.</h2>
+        <form onsubmit="handleForm(event)">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label">IL TUO NOME</label>
+              <input type="text" class="form-input" placeholder="Nome Cognome" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">EMAIL</label>
+              <input type="email" class="form-input" placeholder="email@esempio.it" required>
+            </div>
+          </div>
+          <label class="form-label">MESSAGGIO</label>
+          <textarea class="form-input" rows="1" placeholder="Raccontami il tuo progetto..."></textarea>
+          <button type="submit" class="submit-btn">INVIA MESSAGGIO →</button>
+        </form>
+      </div>
     </div>
 
     <script>
@@ -134,8 +130,13 @@
         e.preventDefault();
         const btn = e.target.querySelector('.submit-btn');
         btn.innerHTML = "INVIATO CON SUCCESSO.";
-        setTimeout(() => { closeOverlays(); e.target.reset(); btn.innerHTML = "INVIA MESSAGGIO →"; }, 2000);
+        setTimeout(() => {
+          closeOverlays();
+          e.target.reset();
+          btn.innerHTML = "INVIA MESSAGGIO →";
+        }, 2000);
       }
     </script>
+
   </body>
 </html>

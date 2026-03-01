@@ -1,11 +1,15 @@
-// 1. Variabili (Design System)
-$bg-white: #ffffff;
-$text-dark: #000000;
-$gray-muted: #888888;
-$glass-effect: rgba(255, 255, 255, 0.75);
+// ─────────────────────────────────────────────────────────
+// 1. VARIABILI (Design System)
+// ─────────────────────────────────────────────────────────
+$bg-white:         #ffffff;
+$text-dark:        #000000;
+$gray-muted:       #888888;
+$glass-effect:     rgba(255, 255, 255, 0.75);
 $transition-smooth: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 
-// 2. Mixin (Riutilizzo di stili)
+// ─────────────────────────────────────────────────────────
+// 2. MIXIN
+// ─────────────────────────────────────────────────────────
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -17,7 +21,9 @@ $transition-smooth: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
 }
 
-// 3. Stili Base
+// ─────────────────────────────────────────────────────────
+// 3. STILI BASE
+// ─────────────────────────────────────────────────────────
 body {
   font-family: 'Inter', sans-serif;
   background-color: $bg-white;
@@ -27,7 +33,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-// 4. Nesting (Annidamento) - Molto più leggibile
+// ─────────────────────────────────────────────────────────
+// 4. HEADER
+// ─────────────────────────────────────────────────────────
 header {
   position: fixed;
   top: 0;
@@ -46,7 +54,7 @@ header {
     letter-spacing: -0.02em;
     text-decoration: none;
     color: inherit;
-    &:hover { opacity: 0.7; } // Uso di & per lo stato hover
+    &:hover { opacity: 0.7; }
   }
 
   .top-link {
@@ -59,13 +67,27 @@ header {
   }
 }
 
+// ─────────────────────────────────────────────────────────
+// 5. MAIN SCROLL CONTAINER
+// ─────────────────────────────────────────────────────────
+main {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+// ─────────────────────────────────────────────────────────
+// 5. SEZIONI HOME
+// ─────────────────────────────────────────────────────────
 .section {
-  @include full-page; // Uso del mixin
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   scroll-snap-align: start;
-  padding: 0 4vw;
+  padding: 0 10vw;
 
   &:hover {
     .project-media img {
@@ -74,9 +96,7 @@ header {
   }
 
   .hero-text-wrapper {
-    grid-column: 1 / 13;
-    grid-row: 4 / 10;
-    align-self: center;
+    width: 100%;
 
     .giant-title {
       font-size: clamp(3.5rem, 8vw, 10rem);
@@ -93,7 +113,9 @@ header {
   }
 }
 
-// 5. Dock Glassmorphism
+// ─────────────────────────────────────────────────────────
+// 6. DOCK GLASSMORPHISM
+// ─────────────────────────────────────────────────────────
 .floating-dock {
   position: fixed;
   bottom: 30px;
@@ -108,6 +130,7 @@ header {
   gap: 5px;
   z-index: 2000;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
   .dock-link {
     text-decoration: none;
@@ -124,7 +147,9 @@ header {
   }
 }
 
-// 6. Overlay & Form
+// ─────────────────────────────────────────────────────────
+// 7. OVERLAY & FORM
+// ─────────────────────────────────────────────────────────
 .custom-overlay {
   position: fixed;
   inset: 0;
@@ -133,12 +158,22 @@ header {
   transform: translateY(100%);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   @include flex-center;
+  padding: 0 4vw;
 
   &.active { transform: translateY(0); }
 
   .minimal-form {
     width: 100%;
     max-width: 700px;
+
+    .form-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: $gray-muted;
+      display: block;
+      margin-bottom: 6px;
+    }
 
     .form-input {
       width: 100%;
@@ -148,7 +183,371 @@ header {
       font-size: 1.3rem;
       margin-bottom: 40px;
       outline: none;
+      font-family: 'Inter', sans-serif;
+      background: transparent;
+      resize: none;
+
       &:focus { border-bottom-color: $text-dark; }
     }
+
+    .submit-btn {
+      background: $text-dark;
+      color: $bg-white;
+      border: none;
+      padding: 16px 36px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+
+      &:hover { opacity: 0.75; }
+    }
+  }
+}
+
+// Pulsante chiudi overlay
+#close-btn {
+  position: fixed;
+  top: 36px;
+  right: 4vw;
+  z-index: 9100;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  transition: opacity 0.3s;
+
+  svg { width: 100%; height: 100%; }
+}
+
+// ─────────────────────────────────────────────────────────
+// 8. PROJECT MEDIA (home)
+// ─────────────────────────────────────────────────────────
+.project-media {
+  width: 90%;
+  height: 78vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.18),
+    0 6px 20px rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+
+  &:hover {
+    box-shadow:
+      0 32px 80px rgba(0, 0, 0, 0.22),
+      0 10px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-smooth;
+  }
+
+  .project-info {
+    position: absolute;
+    bottom: 36px;
+    left: 36px;
+    color: white;
+
+    .project-category {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// 9. CURRICULUM PAGE
+// ─────────────────────────────────────────────────────────
+
+.cv-page {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: $bg-white;
+
+  header {
+    mix-blend-mode: normal;
+    color: $text-dark;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 28px 4vw;
+
+    .brand { color: $text-dark; }
+    .top-link { color: $text-dark !important; }
+  }
+}
+
+.cv-main {
+  width: 100%;
+  padding: 130px 6vw 120px;
+}
+
+// ── Hero ──────────────────────────────────────
+.cv-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  padding-bottom: 72px;
+  margin-bottom: 72px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cv-name {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0 0 24px 0;
+}
+
+.cv-tagline {
+  font-size: 0.9rem;
+  color: $gray-muted;
+  line-height: 1.8;
+  max-width: 420px;
+  font-weight: 300;
+  margin: 0;
+}
+
+// Foto placeholder
+.cv-photo { flex-shrink: 0; }
+
+.cv-photo-placeholder {
+  width: 140px;
+  height: 178px;
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: $gray-muted;
+
+  svg { opacity: 0.3; }
+
+  span {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+// ── Sezioni ───────────────────────────────────
+.cv-section {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0 48px;
+  padding: 48px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+  &--last { border-bottom: none; }
+}
+
+.cv-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $gray-muted;
+  padding-top: 6px;
+}
+
+// ── Info grid ─────────────────────────────────
+.cv-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 48px;
+}
+
+.cv-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cv-info-key {
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $gray-muted;
+}
+
+.cv-info-val {
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  a {
+    color: $text-dark;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    transition: border-color 0.2s;
+
+    &:hover { border-color: $text-dark; }
+  }
+}
+
+// ── Entry (esperienza / formazione) ───────────
+.cv-entry {
+  margin-bottom: 36px;
+  &:last-child { margin-bottom: 0; }
+}
+
+.cv-entry-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.cv-entry-subtitle {
+  font-size: 0.72rem;
+  color: $gray-muted;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+.cv-entry-desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+// ── Skills pills ──────────────────────────────
+.cv-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cv-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  color: $text-dark;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+
+  &:hover {
+    border-color: $text-dark;
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+// ── Social links ──────────────────────────────
+.cv-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cv-social-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: $text-dark;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    opacity: 0.6;
+    transform: translateX(5px);
+    color: $text-dark;
+  }
+}
+
+.cv-social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.cv-social-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cv-social-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.cv-social-handle {
+  font-size: 0.7rem;
+  color: $gray-muted;
+}
+
+.cv-social-arrow {
+  font-size: 1rem;
+  color: $gray-muted;
+  transition: transform 0.2s;
+
+  .cv-social-link:hover & { transform: translateX(4px); }
+}
+
+// ── Responsive ────────────────────────────────
+@media (max-width: 680px) {
+  .cv-hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 28px;
+    padding-bottom: 52px;
+    margin-bottom: 52px;
+  }
+
+  .cv-photo-placeholder {
+    width: 100px;
+    height: 128px;
+  }
+
+  .cv-section {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 36px 0;
+  }
+
+  .cv-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
