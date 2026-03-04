@@ -269,7 +269,6 @@ main {
   max-width: 420px;
   font-weight: 300;
   margin: 0;
-  white-space: nowrap; /* prevent line breaks in the tagline */
 }
 
 .cv-photo {
